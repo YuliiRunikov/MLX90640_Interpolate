@@ -1,5 +1,4 @@
-#ifndef _MLX90640_interpolate_
-#define _MLX90640_interpolate_
+#pragma once
 #include <Arduino.h>
 
 class Interpolate
@@ -13,4 +12,3 @@ public:
     float bicubicInterpolate(float p[], float x, float y);
     void interpolate_image(float *src, uint8_t src_rows, uint8_t src_cols, float *dest, uint8_t dest_rows, uint8_t dest_cols);
 };
-#endif
