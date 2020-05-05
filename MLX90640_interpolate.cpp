@@ -11,7 +11,7 @@ float Interpolate::get_point(float *p, int rows, int cols, int x, int y)
     if (y >= rows)
         y = rows - 1;
     return p[y * cols + x];
-};
+}
 
 void Interpolate::set_point(float *p, int rows, int cols, int x, int y, float f)
 {
@@ -20,7 +20,7 @@ void Interpolate::set_point(float *p, int rows, int cols, int x, int y, float f)
     if ((y < 0) || (y >= rows))
         return;
     p[y * cols + x] = f;
-};
+}
 
 void Interpolate::interpolate_image(float *src, int src_rows, int src_cols, float *dest, int dest_rows, int dest_cols)
 {
@@ -52,7 +52,7 @@ void Interpolate::interpolate_image(float *src, int src_rows, int src_cols, floa
             set_point(dest, dest_rows, dest_cols, x_idx, y_idx, out);
         }
     }
-};
+}
 
 float Interpolate::cubicInterpolate(float p[], float x)
 {
@@ -66,7 +66,7 @@ float Interpolate::cubicInterpolate(float p[], float x)
     Serial.println(r);
   */
     return r;
-};
+}
 
 float Interpolate::bicubicInterpolate(float p[], float x, float y)
 {
@@ -76,7 +76,7 @@ float Interpolate::bicubicInterpolate(float p[], float x, float y)
     arr[2] = cubicInterpolate(p + 8, x);
     arr[3] = cubicInterpolate(p + 12, x);
     return cubicInterpolate(arr, y);
-};
+}
 
 void Interpolate::get_adjacents_1d(float *src, float *dest, uint8_t rows, uint8_t cols, int8_t x, int8_t y)
 {
@@ -87,7 +87,7 @@ void Interpolate::get_adjacents_1d(float *src, float *dest, uint8_t rows, uint8_
     // pick two items to the right
     dest[2] = get_point(src, rows, cols, x + 1, y);
     dest[3] = get_point(src, rows, cols, x + 2, y);
-};
+}
 
 // src is rows*cols and dest is a 16-point array passed in already allocated!
 void Interpolate::get_adjacents_2d(float *src, float *dest, uint8_t rows, uint8_t cols, int8_t x, int8_t y)
@@ -102,4 +102,4 @@ void Interpolate::get_adjacents_2d(float *src, float *dest, uint8_t rows, uint8_
             row[delta_x + 1] = get_point(src, rows, cols, x + delta_x, y + delta_y);
         }
     }
-};
+}
